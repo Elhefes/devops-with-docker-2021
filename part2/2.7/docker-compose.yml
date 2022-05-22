@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  backend:
+    build: https://github.com/docker-hy/ml-kurkkumopo-backend.git
+    ports:
+     - 5000:5000
+    volumes:
+      - model:/src/model
+  frontend:
+    build: https://github.com/docker-hy/ml-kurkkumopo-frontend.git
+    ports:
+     - 3000:3000
+  training:
+    build: https://github.com/docker-hy/ml-kurkkumopo-training.git
+    volumes:
+      - model:/src/model
+      - images:/src/images
+
+volumes:
+  model:
+  images:
